@@ -38,7 +38,7 @@ ADMIN
                         @foreach ($data as $key => $item)
                         <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                             <td>{{$no++}}</td>
-                            <td>{{$item->jurusan->nama}}</td>
+                            <td>{{$item->jurusan == null ? '': $item->jurusan->nama}}</td>
                             <td>{{$item->nama_kajur}}</td>
                             <td>{{$item->tgl_menjabat}}</td>
                             <td>
