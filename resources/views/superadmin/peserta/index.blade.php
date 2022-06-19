@@ -64,7 +64,7 @@ ADMIN
                             <td>{{$item->jkel == 'L' ? 'laki-laki':'perempian'}}</td>
                             <td>{{$item->ayah}}</td>
                             <td>{{$item->ibu}}</td>
-                            <td>{{$item->djurusan->nama}}</td>
+                            <td>{{$item->djurusan == null ? '': $item->djurusan->nama}}</td>
                             <td>
 
                                 <form action="/superadmin/peserta/{{$item->id}}" method="post">
