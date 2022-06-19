@@ -40,8 +40,8 @@ ADMIN
                         @foreach ($data as $key => $item)
                         <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                             <td>{{$no++}}</td>
-                            <td>{{$item->jurusan->nama}}</td>
-                            <td>{{$item->kajur->nama_kajur}}</td>
+                            <td>{{$item->jurusan == null ? '': $item->jurusan->nama}}</td>
+                            <td>{{$item->kajur == null ? '': $item->kajur->nama_kajur}}</td>
                             <td>{{$item->deskripsi}}</td>
                             <td>{{$item->prospek}}</td>
                             <td>{{$item->prestasi}}</td>
