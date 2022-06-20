@@ -34,6 +34,7 @@ ADMIN
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Jurusan</th>
                             <th>Kategori Soal</th>
                             <th>Pertanyaan</th>
                             <th>Pilihan Ganda</th>
@@ -48,6 +49,7 @@ ADMIN
                         @foreach ($data as $key => $item)
                         <tr style="font-size:11px; font-family:Arial, Helvetica, sans-serif">
                             <td>{{$data->firstItem() + $key}}</td>
+                            <td>{{$item->jurusan == null ? '-': $item->jurusan->nama}}</td>
                             <td>{{$item->kategori == null ? '-': $item->kategori->nama}}</td>
                             <td>{!!$item->pertanyaan!!}</td>
                             <td>

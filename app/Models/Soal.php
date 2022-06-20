@@ -15,4 +15,9 @@ class Soal extends Model
     {
         return $this->BelongsTo(Kategori::class, 'kategori_id');
     }
+
+    public function jurusan()
+    {
+        return $this->BelongsTo(Jurusan::class, 'jurusan_id');
+    }
 }

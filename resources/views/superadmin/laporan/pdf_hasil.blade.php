@@ -118,11 +118,11 @@
                     <td>{{$item->nik}}</td>
                     <td>{{$item->nisn}}</td>
                     <td>{{$item->nama}}</td>
-                    <td class="text-center">{{$soal}}</td>
+                    <td class="text-center">{{$item->jml_soal}}</td>
                     <td class="text-center">{{$item->dijawab}}</td>
-                    <td class="text-center">{{$soal - $item->dijawab}}</td>
+                    <td class="text-center">{{$item->jml_soal - $item->dijawab}}</td>
                     <td class="text-center">{{$item->benar}}</td>
-                    <td class="text-center">{{$soal - $item->benar}}</td>
+                    <td class="text-center">{{$item->jml_soal - $item->benar}}</td>
                 </tr>
                 @endforeach
 

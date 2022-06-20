@@ -48,9 +48,9 @@ class UjianController extends Controller
         }
     }
 
-    public function soalUjian()
+    public function soalUjian($id)
     {
-        return Soal::get();
+        return Soal::where('jurusan_id', $id)->get();
     }
 
     public function next($id)
@@ -74,7 +74,6 @@ class UjianController extends Controller
             $waktu      = Waktu::first()->durasi;
             $soal       = Soal::find($id);
             $next       = $this->next($id);
-
 
             $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
                 $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
@@ -105,14 +104,14 @@ class UjianController extends Controller
                 $selesai   = $tgl_selesai;
                 $check     = Carbon::now()->between($mulai, $selesai);
                 if ($check) {
-                    $jmlsoal    = $this->soalUjian()->count();
+                    $jmlsoal    = $this->soalUjian($peserta->jurusan_id)->count();
                     $jam        = Carbon::now()->format('H:i');
                     $waktu      = Waktu::first()->durasi;
                     $soal       = Soal::find($id);
                     $next       = $this->next($id);
 
 
-                    $listSoal   = Soal::get()->map(function ($item) use ($peserta) {
+                    $listSoal   = Soal::where('jurusan_id', $peserta->jurusan_id)->get()->map(function ($item) use ($peserta) {
                         $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
                         if ($check == null) {
                             $item->dijawab = false;

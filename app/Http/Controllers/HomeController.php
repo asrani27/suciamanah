@@ -25,16 +25,17 @@ class HomeController extends Controller
     public function superadmin()
     {
         $peserta    = $this->datapeserta()->count();
-        $soal       = $this->soal()->count();
-        $kategori   = Kategori::get()->count();
+        $soal       = Soal::count();
+        $kategori   = Kategori::count();
         $durasi     = Waktu::first()->durasi;
 
         $yangupload = Peserta::where('file', '!=', null)->get()->count();
-        $datasoal = $this->soal();
 
-        $data = $this->datapeserta()->map(function ($item) use ($datasoal) {
+        $data = $this->datapeserta()->map(function ($item) {
             $jawaban = Jawaban::where('peserta_id', $item->id)->get();
             $item->dijawab = $jawaban->count();
+            $item->jml_soal = $this->soal($item->jurusan_id)->count();
+
             $item->benar = Jawaban::where('peserta_id', $item->id)
                 ->get()->map(function ($item2) {
                     if ($item2->jawaban == $item2->soal->kunci) {
@@ -72,9 +73,9 @@ class HomeController extends Controller
         }
     }
 
-    public function soal()
+    public function soal($id)
     {
-        return Soal::get();
+        return Soal::where('jurusan_id', $id)->get();
     }
 
     public function laporan()
@@ -136,10 +137,11 @@ class HomeController extends Controller
         $type1 = pathinfo($path1, PATHINFO_EXTENSION);
         $smk = 'data:image/' . $type1 . ';base64,' . base64_encode($datalogo1);
 
-        $soal       = $this->soal()->count();
+        //$soal       = $this->soal()->count();
         $data = $this->datapeserta()->map(function ($item) {
             $jawaban = Jawaban::where('peserta_id', $item->id)->get();
             $item->dijawab = $jawaban->count();
+            $item->jml_soal = $this->soal($item->jurusan_id)->count();
             $item->benar = Jawaban::where('peserta_id', $item->id)
                 ->get()->map(function ($item2) {
                     if ($item2->jawaban == $item2->soal->kunci) {
@@ -153,7 +155,7 @@ class HomeController extends Controller
             return $item;
         })->sortByDesc('benar');
 
-        $pdf = PDF::loadView('superadmin.laporan.pdf_hasil', compact('data', 'soal', 'logo', 'smk'))->setPaper('legal');
+        $pdf = PDF::loadView('superadmin.laporan.pdf_hasil', compact('data', 'logo', 'smk'))->setPaper('legal');
         return $pdf->stream();
     }
 

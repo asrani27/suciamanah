@@ -109,7 +109,7 @@
                 <th>NIK</th>
                 <th>NISN</th>
                 <th class="text-center">Nama</th>
-                <th class="text-center">Telp</th>
+                <th class="text-center">Jurusan</th>
                 <th class="text-center">Jumlah Soal</th>
                 <th class="text-center">Di Jawab</th>
                 <th class="text-center">Belum Jawab</th>
@@ -129,12 +129,12 @@
                 <td>{{$item->nik}}</td>
                 <td>{{$item->nisn}}</td>
                 <td>{{$item->nama}}</td>
-                <td>{{$item->telp}}</td>
-                <td class="text-center">{{$soal}}</td>
+                <td>{{$item->djurusan == null ? '-': $item->djurusan->nama}}</td>
+                <td class="text-center">{{$item->jml_soal}}</td>
                 <td class="text-center">{{$item->dijawab}}</td>
-                <td class="text-center">{{$soal - $item->dijawab}}</td>
+                <td class="text-center">{{$item->jml_soal - $item->dijawab}}</td>
                 <td class="text-center">{{$item->benar}}</td>
-                <td class="text-center">{{$soal - $item->benar}}</td>
+                <td class="text-center">{{$item->jml_soal - $item->benar}}</td>
               </tr>
               @endforeach
             </tbody>
