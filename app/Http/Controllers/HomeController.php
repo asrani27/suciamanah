@@ -84,20 +84,58 @@ class HomeController extends Controller
 
     public function pdf_peserta()
     {
+
         $data = Peserta::get();
-        $pdf = PDF::loadView('superadmin.laporan.pdf_peserta', compact('data'))->setPaper('legal');
+
+        $path = 'theme/smk.jpg';
+        $datalogo = file_get_contents($path);
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $logo = 'data:image/' . $type . ';base64,' . base64_encode($datalogo);
+
+
+
+        $path1 = 'theme/smkbisa.png';
+        $datalogo1 = file_get_contents($path1);
+        $type1 = pathinfo($path1, PATHINFO_EXTENSION);
+        $smk = 'data:image/' . $type1 . ';base64,' . base64_encode($datalogo1);
+
+        $pdf = PDF::loadView('superadmin.laporan.pdf_peserta', compact('data', 'logo', 'smk'))->setPaper('legal');
         return $pdf->stream();
     }
 
     public function pdf_projur()
     {
+
+        $path = 'theme/smk.jpg';
+        $datalogo = file_get_contents($path);
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $logo = 'data:image/' . $type . ';base64,' . base64_encode($datalogo);
+
+        $path1 = 'theme/smkbisa.png';
+        $datalogo1 = file_get_contents($path1);
+        $type1 = pathinfo($path1, PATHINFO_EXTENSION);
+        $smk = 'data:image/' . $type1 . ';base64,' . base64_encode($datalogo1);
+
         $data = Projur::get();
-        $pdf = PDF::loadView('superadmin.laporan.pdf_projur', compact('data'))->setPaper('legal');
+        $pdf = PDF::loadView('superadmin.laporan.pdf_projur', compact('data', 'logo', 'smk'))->setPaper('legal');
         return $pdf->stream();
     }
 
     public function pdf_hasiltest()
     {
+
+        $path = 'theme/smk.jpg';
+        $datalogo = file_get_contents($path);
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $logo = 'data:image/' . $type . ';base64,' . base64_encode($datalogo);
+
+
+
+        $path1 = 'theme/smkbisa.png';
+        $datalogo1 = file_get_contents($path1);
+        $type1 = pathinfo($path1, PATHINFO_EXTENSION);
+        $smk = 'data:image/' . $type1 . ';base64,' . base64_encode($datalogo1);
+
         $soal       = $this->soal()->count();
         $data = $this->datapeserta()->map(function ($item) {
             $jawaban = Jawaban::where('peserta_id', $item->id)->get();
@@ -115,7 +153,7 @@ class HomeController extends Controller
             return $item;
         })->sortByDesc('benar');
 
-        $pdf = PDF::loadView('superadmin.laporan.pdf_hasil', compact('data', 'soal'))->setPaper('legal');
+        $pdf = PDF::loadView('superadmin.laporan.pdf_hasil', compact('data', 'soal', 'logo', 'smk'))->setPaper('legal');
         return $pdf->stream();
     }
 
