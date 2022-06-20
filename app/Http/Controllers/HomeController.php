@@ -130,8 +130,6 @@ class HomeController extends Controller
         $type = pathinfo($path, PATHINFO_EXTENSION);
         $logo = 'data:image/' . $type . ';base64,' . base64_encode($datalogo);
 
-
-
         $path1 = 'theme/smkbisa.png';
         $datalogo1 = file_get_contents($path1);
         $type1 = pathinfo($path1, PATHINFO_EXTENSION);
