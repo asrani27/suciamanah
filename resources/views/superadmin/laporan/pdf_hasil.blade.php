@@ -68,12 +68,15 @@
     <header>
         <table border="0" width="100%">
             <tr>
-                {{-- <td style="border: 0px;" align="right" width="30%">
-                    <img src="http://evakip.pt-banjarmasin.go.id/dist/img/logo.png" width="40px" height="50px">
-                </td> --}}
+                <td style="border: 0px;" align="center" width="30%">
+                    <img width="50px" height="50px" src="{{$logo}}">
+                </td>
                 <td style="border: 0px;" valign="top" align="center" width="100%">
                     <h2>DINAS PENDIDIKAN DAN KEBUDAYAAN<BR /> KABUPATEN BARITO TIMUR<br /> SMK N 2 TAMIYANG LAYANG</h2>
 
+                </td>
+                <td style="border: 0px;" align="center" width="30%">
+                    <img width="50px" height="50px" src="{{$smk}}">
                 </td>
             </tr>
         </table>
