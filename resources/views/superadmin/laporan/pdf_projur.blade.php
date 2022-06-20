@@ -5,7 +5,7 @@
 <head>
     <meta content="en-us" http-equiv="Content-Language" />
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>LPG</title>
+    <title>SMK2 TAMIANG LAYANG</title>
     {{-- <style type="text/css">
         .auto-style1 {
             font-family: Arial, Helvetica, sans-serif;
