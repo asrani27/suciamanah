@@ -73,6 +73,7 @@
                 </td>
                 <td style="border: 0px;" valign="top" align="center" width="100%">
                     <h2>DINAS PENDIDIKAN DAN KEBUDAYAAN<BR /> KABUPATEN BARITO TIMUR<br /> SMK N 2 TAMIYANG LAYANG</h2>
+                    Jl. Nansarunai, Tamiang Layang, Kec. Dusun Timur, Kab. Barito Timur, Kalimantan Tengah.
 
                 </td>
                 <td style="border: 0px;" align="center" width="30%">
