@@ -161,11 +161,12 @@ class HomeController extends Controller
     {
         $peserta    = Auth::user()->peserta;
 
-        $jmlsoal    = $this->soal()->count();
+        $jmlsoal    = $this->soal($peserta->jurusan_id)->count();
+
         $jam        = Carbon::now()->format('H:i');
         $waktu      = Waktu::first()->durasi;
 
-        $listSoal   = $this->soal()->map(function ($item) use ($peserta) {
+        $listSoal   = $this->soal($peserta->jurusan_id)->map(function ($item) use ($peserta) {
             $check = Jawaban::where('peserta_id', $peserta->id)->where('soal_id', $item->id)->first();
             if ($check == null) {
                 $item->dijawab = false;
@@ -203,7 +204,13 @@ class HomeController extends Controller
             } elseif ($now > Waktu::first()->tanggal_selesai) {
                 return view('peserta.selesai', compact('jmlsoal', 'jam', 'waktu', 'peserta', 'jmlbelumjawab', 'skor'));
             } else {
-                $soalPertama = Soal::first()->id;
+                $soalPertama = Soal::where('jurusan_id', $peserta->jurusan_id)->first();
+                if ($soalPertama == null) {
+                    toastr()->error('TIDAK ADA SOAL UTK JURUSAN INI');
+                    return back();
+                } else {
+                    $nomorSoal = $soalPertama->id;
+                }
                 return redirect('/peserta/ujian/soal/' . $soalPertama);
             }
         }

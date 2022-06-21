@@ -136,6 +136,7 @@
         $random = 'random' . substr($peserta->telp, -1);
 
         @endphp
+
         @foreach ($listSoal as $key => $item)
         @if ($item->id == $soal->id)
 
