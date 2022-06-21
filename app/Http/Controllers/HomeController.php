@@ -207,7 +207,7 @@ class HomeController extends Controller
                 $soalPertama = Soal::where('jurusan_id', $peserta->jurusan_id)->first();
                 if ($soalPertama == null) {
                     Auth::logout();
-                    toastr()->error('TIDAK ADA SOAL UTK JURUSAN INI');
+                    toastr()->error('TIDAK ADA SOAL UTK JURUSAN INI, DI LOGOUT OTOMATIS');
                     return redirect('/');
                 } else {
                     $nomorSoal = $soalPertama->id;
