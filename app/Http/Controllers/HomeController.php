@@ -206,12 +206,13 @@ class HomeController extends Controller
             } else {
                 $soalPertama = Soal::where('jurusan_id', $peserta->jurusan_id)->first();
                 if ($soalPertama == null) {
+                    Auth::logout();
                     toastr()->error('TIDAK ADA SOAL UTK JURUSAN INI');
-                    return back();
+                    return redirect('/');
                 } else {
                     $nomorSoal = $soalPertama->id;
                 }
-                return redirect('/peserta/ujian/soal/' . $soalPertama);
+                return redirect('/peserta/ujian/soal/' . $nomorSoal);
             }
         }
     }
