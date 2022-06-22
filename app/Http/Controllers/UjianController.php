@@ -55,7 +55,7 @@ class UjianController extends Controller
 
     public function next($id)
     {
-        return Soal::where('id', '>', $id)->first() == null ? Soal::first()->id : Soal::where('id', '>', $id)->first()->id;
+        return Soal::where('jurusan_id', Auth::user()->peserta->jurusan_id)->where('id', '>', $id)->first() == null ? Soal::where('jurusan_id', Auth::user()->peserta->jurusan_id)->first()->id : Soal::where('jurusan_id', Auth::user()->peserta->jurusan_id)->where('id', '>', $id)->first()->id;
     }
 
     public function soal($id)
